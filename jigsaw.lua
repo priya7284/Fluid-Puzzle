@@ -6,11 +6,40 @@ local scene = composer.newScene()
 local widget = require( "widget" );
 local isAndroid = "Android" == system.getInfo("platformName")
 --local soundID=media.newEventSound("CLUCK.wav")
-
+-------------------------------------------------------
+--Initializing ads
+local ads = require( "ads" )
+local bannerAppID = "ca-app-pub-7802290325140609/2970235175"  --for your iOS banner
+if ( system.getInfo( "platformName" ) == "Android" ) then
+    bannerAppID = "ca-app-pub-nnnnnnnnnnn/nnnnnnnnn"  --for your Android banner
+end
+ 
+local adProvider = "admob"
+local function adListener( event )
+    -- The 'event' table includes:
+    -- event.name: string value of "adsRequest"
+    -- event.response: message from the ad provider about the status of this request
+    -- event.phase: string value of "loaded", "shown", or "refresh"
+    -- event.type: string value of "banner" or "interstitial"
+    -- event.isError: boolean true or false
+ 
+    local msg = event.response
+    -- Quick debug message regarding the response from the library
+    print( "Message from the ads library: ", msg )
+ 
+    if ( event.isError ) then
+        print( "Error, no ad received", msg )
+    else
+        print( "Ah ha! Got one!" )
+    end
+end
+ 
+ads.init( adProvider, appID, adListener )
+------------------------------------------------------
 
 --system.activate( "multitouch" )
 local ctrVar=0;
-local total_images = -14;
+local total_images = 0;
 local img_table = {};
 local imagepath
 local create_puzzle
@@ -92,7 +121,7 @@ total_images = total_images + 1;
 
 img_table[total_images]=
 {name="images/icecream_canvas.png",
-
+OrigImg="images/icecream_resize.png",
 arguments={
 {x=650, y=150, targetX=100, targetY=71, img="images/icecream_p1.png"},
 {x=650, y=150, targetX=260, targetY=71, img="images/icecream_p2.png"},
@@ -118,6 +147,7 @@ total_images = total_images + 1;
 
 img_table[total_images]=
 {name="images/squirrels_canvas.png",
+OrigImg="images/squirrels_resize.png",
 arguments={
 {x=650, y=150, targetX=100, targetY=69, img="images/squirrels_p1.png"},
 {x=650, y=150, targetX=260, targetY=69, img="images/squirrels_p2.png"},
@@ -142,6 +172,7 @@ total_images = total_images + 1;
 
 img_table[total_images]=
 {name="images/camping_canvas.png",
+OrigImg="images/camping_resize.png",
  arguments={
 {x=650, y=150, targetX=100, targetY=49, img="images/camping_p1.png"},
 {x=650, y=150, targetX=260, targetY=49, img="images/camping_p2.png"},
@@ -167,6 +198,7 @@ total_images = total_images + 1;
 
 img_table[total_images]=
 {name="images/kidsplaying_canvas.png",
+OrigImg="images/kidsplaying_resize.png",
  arguments={
 {x=650, y=150, targetX=100, targetY=56, img="images/kidsplaying_p1.png"},
 {x=650, y=150, targetX=260, targetY=56, img="images/kidsplaying_p2.png"},
@@ -191,6 +223,7 @@ total_images = total_images + 1;
 
 img_table[total_images]=
 {name="images/rainbow_canvas.png",
+OrigImg="images/rainbow_resize.png",
 arguments={
 {x=650, y=150, targetX=100, targetY=83, img="images/rainbow_p1.png"},
 {x=650, y=150, targetX=260, targetY=83, img="images/rainbow_p2.png"},
@@ -215,6 +248,7 @@ total_images = total_images + 1;
 
 img_table[total_images] = 
 {name="images/kidsrunning_canvas.png",
+OrigImg="images/kidsrunning_resize.png",
 arguments={
 {x=650, y=150, targetX=100, targetY=49, img="images/kidsrunning_p1.png"},
 {x=650, y=150, targetX=260, targetY=49, img="images/kidsrunning_p2.png"},
@@ -239,6 +273,7 @@ total_images = total_images + 1;
 
 img_table[total_images] = 
 {name="images/threeboys_canvas.png",
+OrigImg="images/threeboys_resize.png",
 arguments={
 {x=650, y=150, targetX=100, targetY=57, img="images/threeboys_p1.png"},
 {x=650, y=150, targetX=260, targetY=57, img="images/threeboys_p2.png"},
@@ -263,6 +298,7 @@ total_images = total_images + 1;
 
 img_table[total_images] = 
 {name="images/manrunning_canvas.png",
+OrigImg="images/manrunning_resize.png",
 arguments={
 {x=650, y=150, targetX=100, targetY=58, img="images/manrunning_p1.png"},
 {x=650, y=150, targetX=260, targetY=58, img="images/manrunning_p2.png"},
@@ -287,6 +323,7 @@ total_images = total_images + 1;
 
 img_table[total_images] = 
 {name="images/kidsandschool_canvas.png",
+OrigImg="images/kidsandschool_resize.png",
 arguments={
 {x=650, y=150, targetX=100, targetY=78, img="images/kidsandschool_p1.png"},
 {x=650, y=150, targetX=260, targetY=78, img="images/kidsandschool_p2.png"},
@@ -311,6 +348,7 @@ total_images = total_images + 1;
 
 img_table[total_images] = 
 {name="images/kidsstudy_canvas.png",
+OrigImg="images/kidsstudy_resize.png",
 arguments={
 {x=650, y=150, targetX=100, targetY=69, img="images/kidsstudy_p1.png"},
 {x=650, y=150, targetX=260, targetY=69, img="images/kidsstudy_p2.png"},
@@ -335,6 +373,7 @@ total_images = total_images + 1;
 
 img_table[total_images] = 
 {name="images/cycling_canvas.png",
+OrigImg="images/cycling_resize.png",
 arguments={
 {x=650, y=150, targetX=100, targetY=57, img="images/cycling_p1.png"},
 {x=650, y=150, targetX=260, targetY=57, img="images/cycling_p2.png"},
@@ -359,6 +398,7 @@ total_images = total_images + 1;
 
 img_table[total_images] = 
 {name="images/tree_canvas.png",
+OrigImg="images/tree_resize.png",
 arguments={
 {x=650, y=150, targetX=100, targetY=53, img="images/tree_p1.png"},
 {x=650, y=150, targetX=260, targetY=53, img="images/tree_p2.png"},
@@ -425,12 +465,34 @@ local function onTouch( event )
 
 			-- Make object move (we subtract t.x0,t.y0 so that moves are
 			-- relative to initial grab point, rather than object "snapping").
-			t.x = event.x - t.x0
-			t.y = event.y - t.y0
-			print (t.x) 
-			print (t.y) 
+				t.x = event.x - t.x0
+				t.y = event.y - t.y0
+				print (t.x) 
+				print (t.y) 
+			if (t.x <0) and (t.y > display.contentHeight) then
+				t.x=0
+				t.y=display.contentHeight
 
+			elseif (t.x <0) and (t.y<0) then
+				t.x=0
+				t.y=0
 
+			elseif(t.x > display.contentWidth) and (t.y <0) then
+				t.x=display.contentWidth
+				t.y=0
+			elseif (t.x > display.contentWidth) and (t.y > display.contentHeight) then
+				t.x=display.contentWidth
+				t.y=display.contentHeight
+			elseif (t.x < 0) then
+				t.x=0
+			elseif (t.y<0) then
+				t.y=0
+			elseif (t.x>display.contentWidth) then
+				t.x =display.contentWidth
+			elseif (t.y > display.contentHeight) then
+				t.y=display.contentHeight
+			
+			end
 
 			
 
@@ -466,18 +528,7 @@ local function onTouch( event )
 	return true
 end
 
-local function wrapit(theObject)
-	local obj = theObject
-     if obj.x < 10 then
-       obj.x = 10
-     elseif obj.x > 738 then
-       obj.x = 738
-     elseif obj.y < 10 then
-       obj.y = 10
-     elseif obj.y > 994 then
-       obj.y = 994
-     end
-end
+
 
 local function onHomeTouch(event)
 
@@ -697,7 +748,7 @@ function scene:show( event )
 		create_puzzle();
 		ctrVar=1
 	end
-	
+	ads.show( "banner", { x=0, y=100000, appId="ca-app-pub-7802290325140609/2970235175" } )
 end
 
 
