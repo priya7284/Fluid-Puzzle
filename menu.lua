@@ -5,23 +5,6 @@ local scene = composer.newScene()
 local widget = require( "widget" )
 --local utility = require( "utility" )
 
-----------------
---Initializing ad
-local ads = require( "ads" )
-local interstitialAppID =" ca-app-pub-7802290325140609/2665208374" -- for ios Interstial ad
-if ( system.getInfo( "platformName" ) == "Android" ) then
-    --bannerAppID = "ca-app-pub-nnnnnnnnnnn/nnnnnnnnn"  --for your Android banner
-    --interstitialAppID = "ca-app-pub-nnnnnnnnnnn/nnnnnnnnn"  --for your Android interstitial
-end
-
-local adProvider = "admob"
-local function adListener( event )
-    --(more on this later)
-end
- 
-ads.init( adProvider, appID, adListener )
------------------
-
 local params
 
 --local myData = require( "mydata" )
@@ -34,9 +17,6 @@ local function handlePieceButtonEvent( event )
         composer.removeScene( "puzzle", false )
         composer.gotoScene("puzzle", { effect = "crossFade", time = 333 })
     end
-
-    ads.show( "interstitial")
-    print "passed ads"
 end
 
 local function handleJigsawButtonEvent( event )

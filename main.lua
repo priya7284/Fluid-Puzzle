@@ -16,8 +16,14 @@ display.setStatusBar( display.HiddenStatusBar )
 local composer=require("composer")
 --local storyboard=require("storyboard")
 local widget = require( "widget" )
+-- Define music variables
+local gameMusic = audio.loadStream( "backgroundMusic.wav" )
+ 
+-- Play the music
+local gameMusicChannel = audio.play( gameMusic, { loops = -1 } )
 --storyboard.gotoScene("menu")
 composer.gotoScene( "menu")
+
 
 
 
