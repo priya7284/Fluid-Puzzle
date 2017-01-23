@@ -12,8 +12,31 @@ local top             = 0 - unusedHeight/2
 local right           = display.contentWidth + unusedWidth/2
 local bottom          = display.contentHeight + unusedHeight/2
 
+
 local scene = composer.newScene()
 
+-------------------------------------------------------
+--Initializing ads
+local ads = require( "ads" )
+local bannerAppID = "ca-app-pub-7802290325140609/2970235175"  --for your iOS banner
+if ( system.getInfo( "platformName" ) == "Android" ) then
+    bannerAppID = "ca-app-pub-nnnnnnnnnnn/nnnnnnnnn"  --for your Android banner
+end
+ 
+local adProvider = "admob"
+local function adListener( event )
+    -- Quick debug message regarding the response from the library
+    print( "Message from the ads library: ", msg )
+ 
+    if ( event.isError ) then
+        print( "Error, no ad received", msg )
+    else
+        print( "Ah ha! Got one!" )
+    end
+end
+ 
+ads.init( adProvider, appID, adListener )
+------------------------------------------------------
 
  
 local widget = require( "widget" );
@@ -209,7 +232,30 @@ local function onTouch( event )
 			-- relative to initial grab point, rather than object "snapping").
 			t.x = event.x - t.x0
 			t.y = event.y - t.y0
+			if (t.x <0) and (t.y > display.contentHeight) then
+				t.x=0
+				t.y=display.contentHeight
 
+			elseif (t.x <0) and (t.y<0) then
+				t.x=0
+				t.y=0
+
+			elseif(t.x > display.contentWidth) and (t.y <0) then
+				t.x=display.contentWidth
+				t.y=0
+			elseif (t.x > display.contentWidth) and (t.y > display.contentHeight) then
+				t.x=display.contentWidth
+				t.y=display.contentHeight
+			elseif (t.x < 0) then
+				t.x=0
+			elseif (t.y<0) then
+				t.y=0
+			elseif (t.x>display.contentWidth) then
+				t.x =display.contentWidth
+			elseif (t.y > display.contentHeight) then
+				t.y=display.contentHeight
+			
+			end
 
 
 
@@ -416,6 +462,7 @@ function scene:show( event )
 	ctrVar=ctrVar+1
 	print("ctrVar= ",ctrVar)
 
+	ads.show( "banner", { x=0, y=100000, appId="ca-app-pub-7802290325140609/2970235175" } )
 
 	if (ctrVar ~= 2) then
 		print( "2: enterScene event" )
@@ -446,10 +493,10 @@ bg.y = display.contentHeight / 2--]]
 		create_puzzle();
 		ctrVar=1
 		--ads.show( "banner", { x=0, y=100000, appId=bannerAppID } )
-		ads.init("admob", bannerAppID, adListener )
-		ads:setCurrentProvider("admob")
-		ads.load("admob", { appId = bannerAppID, testMode = true } )
-		showAd("top",true)
+		--ads.init("admob", bannerAppID, adListener )
+		--ads:setCurrentProvider("admob")
+		--ads.load("admob", { appId = bannerAppID, testMode = true } )
+		--showAd("top",true)
 
 
 	end	
