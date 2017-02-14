@@ -1,8 +1,8 @@
 local composer = require( "composer" )
 local scene = composer.newScene()
 
-
- 
+local num
+ local leftTouched=false
 local widget = require( "widget" );
 local isAndroid = "Android" == system.getInfo("platformName")
 --local soundID=media.newEventSound("CLUCK.wav")
@@ -371,34 +371,9 @@ arguments={
 
 total_images = total_images + 1;
 
-img_table[total_images] = 
-{name="images/cycling_canvas.png",
-OrigImg="images/cycling_resize.png",
-arguments={
-{x=650, y=150, targetX=100, targetY=57, img="images/cycling_p1.png"},
-{x=650, y=150, targetX=260, targetY=57, img="images/cycling_p2.png"},
-{x=650, y=150, targetX=400, targetY=71, img="images/cycling_p3.png"},
-{x=650, y=150, targetX=540, targetY=71, img="images/cycling_p4.png"},
-{x=650, y=150, targetX=100, targetY=172, img="images/cycling_p5.png"},
-{x=650, y=150, targetX=260, targetY=158, img="images/cycling_p6.png"},
-{x=650, y=150, targetX=400, targetY=185, img="images/cycling_p7.png"},
-{x=650, y=150, targetX=540, targetY=185, img="images/cycling_p8.png"},
-{x=650, y=150, targetX=80, targetY=285, img="images/cycling_p9.png"},
-{x=650, y=150, targetX=220, targetY=272, img="images/cycling_p10.png"},
-{x=650, y=150, targetX=380, targetY=285, img="images/cycling_p11.png"},
-{x=650, y=150, targetX=540, targetY=285, img="images/cycling_p12.png"},
-{x=650, y=150, targetX=100, targetY=385, img="images/cycling_p13.png"},
-{x=650, y=150, targetX=240, targetY=385, img="images/cycling_p14.png"},
-{x=650, y=150, targetX=400, targetY=385, img="images/cycling_p15.png"},
-{x=650, y=150, targetX=560, targetY=385, img="images/cycling_p16.png"},
-}
-};
-
-total_images = total_images + 1;
 
 img_table[total_images] = 
 {name="images/tree_canvas.png",
-OrigImg="images/tree_resize.png",
 arguments={
 {x=650, y=150, targetX=100, targetY=53, img="images/tree_p1.png"},
 {x=650, y=150, targetX=260, targetY=53, img="images/tree_p2.png"},
@@ -416,6 +391,366 @@ arguments={
 {x=650, y=150, targetX=240, targetY=358, img="images/tree_p14.png"},
 {x=650, y=150, targetX=400, targetY=358, img="images/tree_p15.png"},
 {x=650, y=150, targetX=560, targetY=358, img="images/tree_p16.png"},
+}
+};
+
+total_images = total_images + 1;
+
+img_table[total_images] = 
+{name="images/zebra_canvas.png",
+arguments={
+{x=650, y=150, targetX=100, targetY=75, img="images/zebra_p1.png"},
+{x=650, y=150, targetX=260, targetY=75, img="images/zebra_p2.png"},
+{x=650, y=150, targetX=400, targetY=94, img="images/zebra_p3.png"},
+{x=650, y=150, targetX=540, targetY=94, img="images/zebra_p4.png"},
+{x=650, y=150, targetX=100, targetY=225, img="images/zebra_p5.png"},
+{x=650, y=150, targetX=260, targetY=207, img="images/zebra_p6.png"},
+{x=650, y=150, targetX=400, targetY=244, img="images/zebra_p7.png"},
+{x=650, y=150, targetX=540, targetY=244, img="images/zebra_p8.png"},
+{x=650, y=150, targetX=80, targetY=375, img="images/zebra_p9.png"},
+{x=650, y=150, targetX=220, targetY=357, img="images/zebra_p10.png"},
+{x=650, y=150, targetX=380, targetY=375, img="images/zebra_p11.png"},
+{x=650, y=150, targetX=540, targetY=375, img="images/zebra_p12.png"},
+{x=650, y=150, targetX=100, targetY=506, img="images/zebra_p13.png"},
+{x=650, y=150, targetX=240, targetY=506, img="images/zebra_p14.png"},
+{x=650, y=150, targetX=400, targetY=506, img="images/zebra_p15.png"},
+{x=650, y=150, targetX=560, targetY=506, img="images/zebra_p16.png"},
+}
+};
+
+total_images = total_images + 1;
+
+img_table[total_images] = 
+{name="images/spider_canvas.png",
+arguments={
+{x=650, y=150, targetX=100, targetY=70, img="images/spider_p1.png"},
+{x=650, y=150, targetX=260, targetY=70, img="images/spider_p2.png"},
+{x=650, y=150, targetX=400, targetY=88, img="images/spider_p3.png"},
+{x=650, y=150, targetX=540, targetY=88, img="images/spider_p4.png"},
+{x=650, y=150, targetX=100, targetY=210, img="images/spider_p5.png"},
+{x=650, y=150, targetX=260, targetY=193, img="images/spider_p6.png"},
+{x=650, y=150, targetX=400, targetY=228, img="images/spider_p7.png"},
+{x=650, y=150, targetX=540, targetY=228, img="images/spider_p8.png"},
+{x=650, y=150, targetX=80, targetY=350, img="images/spider_p9.png"},
+{x=650, y=150, targetX=220, targetY=333, img="images/spider_p10.png"},
+{x=650, y=150, targetX=380, targetY=350, img="images/spider_p11.png"},
+{x=650, y=150, targetX=540, targetY=350, img="images/spider_p12.png"},
+{x=650, y=150, targetX=100, targetY=472, img="images/spider_p13.png"},
+{x=650, y=150, targetX=240, targetY=472, img="images/spider_p14.png"},
+{x=650, y=150, targetX=400, targetY=472, img="images/spider_p15.png"},
+{x=650, y=150, targetX=560, targetY=472, img="images/spider_p16.png"},
+}
+};
+
+total_images = total_images + 1;
+
+img_table[total_images] = 
+{name="images/owl_canvas.png",
+arguments={
+{x=650, y=150, targetX=100, targetY=62, img="images/owl_p1.png"},
+{x=650, y=150, targetX=260, targetY=62, img="images/owl_p2.png"},
+{x=650, y=150, targetX=400, targetY=77, img="images/owl_p3.png"},
+{x=650, y=150, targetX=540, targetY=77, img="images/owl_p4.png"},
+{x=650, y=150, targetX=100, targetY=186, img="images/owl_p5.png"},
+{x=650, y=150, targetX=260, targetY=170, img="images/owl_p6.png"},
+{x=650, y=150, targetX=400, targetY=200, img="images/owl_p7.png"},
+{x=650, y=150, targetX=540, targetY=200, img="images/owl_p8.png"},
+{x=650, y=150, targetX=80, targetY=308, img="images/owl_p9.png"},
+{x=650, y=150, targetX=220, targetY=293, img="images/owl_p10.png"},
+{x=650, y=150, targetX=380, targetY=308, img="images/owl_p11.png"},
+{x=650, y=150, targetX=540, targetY=308, img="images/owl_p12.png"},
+{x=650, y=150, targetX=100, targetY=416, img="images/owl_p13.png"},
+{x=650, y=150, targetX=240, targetY=416, img="images/owl_p14.png"},
+{x=650, y=150, targetX=400, targetY=416, img="images/owl_p15.png"},
+{x=650, y=150, targetX=560, targetY=416, img="images/owl_p16.png"},
+}
+};
+
+total_images = total_images + 1;
+
+img_table[total_images] = 
+{name="images/happylion_canvas.png",
+arguments={
+{x=650, y=150, targetX=100, targetY=54, img="images/happylion_p1.png"},
+{x=650, y=150, targetX=260, targetY=54, img="images/happylion_p2.png"},
+{x=650, y=150, targetX=400, targetY=68, img="images/happylion_p3.png"},
+{x=650, y=150, targetX=540, targetY=68, img="images/happylion_p4.png"},
+{x=650, y=150, targetX=100, targetY=162, img="images/happylion_p5.png"},
+{x=650, y=150, targetX=260, targetY=148, img="images/happylion_p6.png"},
+{x=650, y=150, targetX=400, targetY=175, img="images/happylion_p7.png"},
+{x=650, y=150, targetX=540, targetY=175, img="images/happylion_p8.png"},
+{x=650, y=150, targetX=80, targetY=268, img="images/happylion_p9.png"},
+{x=650, y=150, targetX=220, targetY=256, img="images/happylion_p10.png"},
+{x=650, y=150, targetX=380, targetY=268, img="images/happylion_p11.png"},
+{x=650, y=150, targetX=540, targetY=268, img="images/happylion_p12.png"},
+{x=650, y=150, targetX=100, targetY=362, img="images/happylion_p13.png"},
+{x=650, y=150, targetX=240, targetY=362, img="images/happylion_p14.png"},
+{x=650, y=150, targetX=400, targetY=362, img="images/happylion_p15.png"},
+{x=650, y=150, targetX=560, targetY=362, img="images/happylion_p16.png"},
+}
+};
+
+total_images = total_images + 1;
+
+img_table[total_images] = 
+{name="images/frog_canvas.png",
+arguments={
+{x=650, y=150, targetX=100, targetY=91, img="images/frog_p1.png"},
+{x=650, y=150, targetX=260, targetY=91, img="images/frog_p2.png"},
+{x=650, y=150, targetX=400, targetY=114, img="images/frog_p3.png"},
+{x=650, y=150, targetX=540, targetY=114, img="images/frog_p4.png"},
+{x=650, y=150, targetX=100, targetY=272, img="images/frog_p5.png"},
+{x=650, y=150, targetX=260, targetY=249, img="images/frog_p6.png"},
+{x=650, y=150, targetX=400, targetY=295, img="images/frog_p7.png"},
+{x=650, y=150, targetX=540, targetY=295, img="images/frog_p8.png"},
+{x=650, y=150, targetX=80, targetY=453, img="images/frog_p9.png"},
+{x=650, y=150, targetX=220, targetY=430, img="images/frog_p10.png"},
+{x=650, y=150, targetX=380, targetY=453, img="images/frog_p11.png"},
+{x=650, y=150, targetX=540, targetY=453, img="images/frog_p12.png"},
+{x=650, y=150, targetX=100, targetY=611, img="images/frog_p13.png"},
+{x=650, y=150, targetX=240, targetY=611, img="images/frog_p14.png"},
+{x=650, y=150, targetX=400, targetY=611, img="images/frog_p15.png"},
+{x=650, y=150, targetX=560, targetY=611, img="images/frog_p16.png"},
+}
+};
+
+
+total_images = total_images + 1;
+
+img_table[total_images] = 
+{name="images/elephant_canvas.png",
+arguments={
+{x=650, y=150, targetX=100, targetY=80, img="images/elephant_p1.png"},
+{x=650, y=150, targetX=260, targetY=80, img="images/elephant_p2.png"},
+{x=650, y=150, targetX=400, targetY=100, img="images/elephant_p3.png"},
+{x=650, y=150, targetX=540, targetY=100, img="images/elephant_p4.png"},
+{x=650, y=150, targetX=100, targetY=239, img="images/elephant_p5.png"},
+{x=650, y=150, targetX=260, targetY=219, img="images/elephant_p6.png"},
+{x=650, y=150, targetX=400, targetY=259, img="images/elephant_p7.png"},
+{x=650, y=150, targetX=540, targetY=259, img="images/elephant_p8.png"},
+{x=650, y=150, targetX=80, targetY=398, img="images/elephant_p9.png"},
+{x=650, y=150, targetX=220, targetY=379, img="images/elephant_p10.png"},
+{x=650, y=150, targetX=380, targetY=398, img="images/elephant_p11.png"},
+{x=650, y=150, targetX=540, targetY=398, img="images/elephant_p12.png"},
+{x=650, y=150, targetX=100, targetY=537, img="images/elephant_p13.png"},
+{x=650, y=150, targetX=240, targetY=537, img="images/elephant_p14.png"},
+{x=650, y=150, targetX=400, targetY=537, img="images/elephant_p15.png"},
+{x=650, y=150, targetX=560, targetY=537, img="images/elephant_p16.png"},
+}
+};
+
+total_images = total_images + 1;
+
+img_table[total_images] = 
+{name="images/duck_canvas.png",
+arguments={
+{x=650, y=150, targetX=100, targetY=57, img="images/duck_p1.png"},
+{x=650, y=150, targetX=260, targetY=57, img="images/duck_p2.png"},
+{x=650, y=150, targetX=400, targetY=71, img="images/duck_p3.png"},
+{x=650, y=150, targetX=540, targetY=71, img="images/duck_p4.png"},
+{x=650, y=150, targetX=100, targetY=170, img="images/duck_p5.png"},
+{x=650, y=150, targetX=260, targetY=156, img="images/duck_p6.png"},
+{x=650, y=150, targetX=400, targetY=184, img="images/duck_p7.png"},
+{x=650, y=150, targetX=540, targetY=184, img="images/duck_p8.png"},
+{x=650, y=150, targetX=80, targetY=283, img="images/duck_p9.png"},
+{x=650, y=150, targetX=220, targetY=269, img="images/duck_p10.png"},
+{x=650, y=150, targetX=380, targetY=283, img="images/duck_p11.png"},
+{x=650, y=150, targetX=540, targetY=283, img="images/duck_p12.png"},
+{x=650, y=150, targetX=100, targetY=382, img="images/duck_p13.png"},
+{x=650, y=150, targetX=240, targetY=382, img="images/duck_p14.png"},
+{x=650, y=150, targetX=400, targetY=382, img="images/duck_p15.png"},
+{x=650, y=150, targetX=560, targetY=382, img="images/duck_p16.png"},
+}
+};
+
+total_images = total_images + 1;
+
+img_table[total_images] = 
+{name="images/dino_canvas.png",
+arguments={
+{x=650, y=150, targetX=100, targetY=65, img="images/dino_p1.png"},
+{x=650, y=150, targetX=260, targetY=65, img="images/dino_p2.png"},
+{x=650, y=150, targetX=400, targetY=81, img="images/dino_p3.png"},
+{x=650, y=150, targetX=540, targetY=81, img="images/dino_p4.png"},
+{x=650, y=150, targetX=100, targetY=195, img="images/dino_p5.png"},
+{x=650, y=150, targetX=260, targetY=179, img="images/dino_p6.png"},
+{x=650, y=150, targetX=400, targetY=211, img="images/dino_p7.png"},
+{x=650, y=150, targetX=540, targetY=211, img="images/dino_p8.png"},
+{x=650, y=150, targetX=80, targetY=325, img="images/dino_p9.png"},
+{x=650, y=150, targetX=220, targetY=309, img="images/dino_p10.png"},
+{x=650, y=150, targetX=380, targetY=325, img="images/dino_p11.png"},
+{x=650, y=150, targetX=540, targetY=325, img="images/dino_p12.png"},
+{x=650, y=150, targetX=100, targetY=439, img="images/dino_p13.png"},
+{x=650, y=150, targetX=240, targetY=439, img="images/dino_p14.png"},
+{x=650, y=150, targetX=400, targetY=439, img="images/dino_p15.png"},
+{x=650, y=150, targetX=560, targetY=439, img="images/dino_p16.png"},
+}
+};
+
+total_images = total_images + 1;
+
+img_table[total_images] = 
+{name="images/crab_canvas.png",
+arguments={
+{x=650, y=150, targetX=100, targetY=85, img="images/crab_p1.png"},
+{x=650, y=150, targetX=260, targetY=85, img="images/crab_p2.png"},
+{x=650, y=150, targetX=400, targetY=106, img="images/crab_p3.png"},
+{x=650, y=150, targetX=540, targetY=106, img="images/crab_p4.png"},
+{x=650, y=150, targetX=100, targetY=254, img="images/crab_p5.png"},
+{x=650, y=150, targetX=260, targetY=233, img="images/crab_p6.png"},
+{x=650, y=150, targetX=400, targetY=275, img="images/crab_p7.png"},
+{x=650, y=150, targetX=540, targetY=275, img="images/crab_p8.png"},
+{x=650, y=150, targetX=80, targetY=423, img="images/crab_p9.png"},
+{x=650, y=150, targetX=220, targetY=402, img="images/crab_p10.png"},
+{x=650, y=150, targetX=380, targetY=423, img="images/crab_p11.png"},
+{x=650, y=150, targetX=540, targetY=423, img="images/crab_p12.png"},
+{x=650, y=150, targetX=100, targetY=570, img="images/crab_p13.png"},
+{x=650, y=150, targetX=240, targetY=570, img="images/crab_p14.png"},
+{x=650, y=150, targetX=400, targetY=570, img="images/crab_p15.png"},
+{x=650, y=150, targetX=560, targetY=570, img="images/crab_p16.png"},
+}
+};
+
+total_images = total_images + 1;
+
+img_table[total_images] = 
+{name="images/chicken_canvas.png",
+arguments={
+{x=650, y=150, targetX=100, targetY=80, img="images/chicken_p1.png"},
+{x=650, y=150, targetX=260, targetY=80, img="images/chicken_p2.png"},
+{x=650, y=150, targetX=400, targetY=100, img="images/chicken_p3.png"},
+{x=650, y=150, targetX=540, targetY=100, img="images/chicken_p4.png"},
+{x=650, y=150, targetX=100, targetY=240, img="images/chicken_p5.png"},
+{x=650, y=150, targetX=260, targetY=220, img="images/chicken_p6.png"},
+{x=650, y=150, targetX=400, targetY=260, img="images/chicken_p7.png"},
+{x=650, y=150, targetX=540, targetY=260, img="images/chicken_p8.png"},
+{x=650, y=150, targetX=80, targetY=400, img="images/chicken_p9.png"},
+{x=650, y=150, targetX=220, targetY=380, img="images/chicken_p10.png"},
+{x=650, y=150, targetX=380, targetY=400, img="images/chicken_p11.png"},
+{x=650, y=150, targetX=540, targetY=400, img="images/chicken_p12.png"},
+{x=650, y=150, targetX=100, targetY=540, img="images/chicken_p13.png"},
+{x=650, y=150, targetX=240, targetY=540, img="images/chicken_p14.png"},
+{x=650, y=150, targetX=400, targetY=540, img="images/chicken_p15.png"},
+{x=650, y=150, targetX=560, targetY=540, img="images/chicken_p16.png"},
+}
+};
+
+total_images = total_images + 1;
+img_table[total_images] = 
+{name="images/bear_canvas.png",
+arguments={
+{x=650, y=150, targetX=100, targetY=53, img="images/bear_p1.png"},
+{x=650, y=150, targetX=260, targetY=53, img="images/bear_p2.png"},
+{x=650, y=150, targetX=400, targetY=66, img="images/bear_p3.png"},
+{x=650, y=150, targetX=540, targetY=66, img="images/bear_p4.png"},
+{x=650, y=150, targetX=100, targetY=158, img="images/bear_p5.png"},
+{x=650, y=150, targetX=260, targetY=145, img="images/bear_p6.png"},
+{x=650, y=150, targetX=400, targetY=171, img="images/bear_p7.png"},
+{x=650, y=150, targetX=540, targetY=171, img="images/bear_p8.png"},
+{x=650, y=150, targetX=80, targetY=263, img="images/bear_p9.png"},
+{x=650, y=150, targetX=220, targetY=250, img="images/bear_p10.png"},
+{x=650, y=150, targetX=380, targetY=263, img="images/bear_p11.png"},
+{x=650, y=150, targetX=540, targetY=263, img="images/bear_p12.png"},
+{x=650, y=150, targetX=100, targetY=355, img="images/bear_p13.png"},
+{x=650, y=150, targetX=240, targetY=355, img="images/bear_p14.png"},
+{x=650, y=150, targetX=400, targetY=355, img="images/bear_p15.png"},
+{x=650, y=150, targetX=560, targetY=355, img="images/bear_p16.png"},
+}
+};
+
+total_images = total_images + 1;
+
+img_table[total_images] = 
+{name="images/lion_canvas.png",
+arguments={
+{x=650, y=150, targetX=100, targetY=66, img="images/lion_p1.png"},
+{x=650, y=150, targetX=260, targetY=66, img="images/lion_p2.png"},
+{x=650, y=150, targetX=400, targetY=82, img="images/lion_p3.png"},
+{x=650, y=150, targetX=540, targetY=82, img="images/lion_p4.png"},
+{x=650, y=150, targetX=100, targetY=197, img="images/lion_p5.png"},
+{x=650, y=150, targetX=260, targetY=181, img="images/lion_p6.png"},
+{x=650, y=150, targetX=400, targetY=213, img="images/lion_p7.png"},
+{x=650, y=150, targetX=540, targetY=213, img="images/lion_p8.png"},
+{x=650, y=150, targetX=80, targetY=328, img="images/lion_p9.png"},
+{x=650, y=150, targetX=220, targetY=312, img="images/lion_p10.png"},
+{x=650, y=150, targetX=380, targetY=328, img="images/lion_p11.png"},
+{x=650, y=150, targetX=540, targetY=328, img="images/lion_p12.png"},
+{x=650, y=150, targetX=100, targetY=443, img="images/lion_p13.png"},
+{x=650, y=150, targetX=240, targetY=443, img="images/lion_p14.png"},
+{x=650, y=150, targetX=400, targetY=443, img="images/lion_p15.png"},
+{x=650, y=150, targetX=560, targetY=443, img="images/lion_p16.png"},
+}
+};
+
+total_images = total_images + 1;
+
+img_table[total_images] = 
+{name="images/horse_canvas.png",
+arguments={
+{x=650, y=150, targetX=100, targetY=68, img="images/horse_p1.png"},
+{x=650, y=150, targetX=260, targetY=68, img="images/horse_p2.png"},
+{x=650, y=150, targetX=400, targetY=85, img="images/horse_p3.png"},
+{x=650, y=150, targetX=540, targetY=85, img="images/horse_p4.png"},
+{x=650, y=150, targetX=100, targetY=204, img="images/horse_p5.png"},
+{x=650, y=150, targetX=260, targetY=187, img="images/horse_p6.png"},
+{x=650, y=150, targetX=400, targetY=220, img="images/horse_p7.png"},
+{x=650, y=150, targetX=540, targetY=220, img="images/horse_p8.png"},
+{x=650, y=150, targetX=80, targetY=338, img="images/horse_p9.png"},
+{x=650, y=150, targetX=220, targetY=322, img="images/horse_p10.png"},
+{x=650, y=150, targetX=380, targetY=338, img="images/horse_p11.png"},
+{x=650, y=150, targetX=540, targetY=338, img="images/horse_p12.png"},
+{x=650, y=150, targetX=100, targetY=456, img="images/horse_p13.png"},
+{x=650, y=150, targetX=240, targetY=456, img="images/horse_p14.png"},
+{x=650, y=150, targetX=400, targetY=456, img="images/horse_p15.png"},
+{x=650, y=150, targetX=560, targetY=456, img="images/horse_p16.png"},
+}
+};
+
+total_images = total_images + 1;
+
+img_table[total_images] = 
+{name="images/hedgehog_canvas.png",
+arguments={
+{x=650, y=150, targetX=100, targetY=85, img="images/hedgehog_p1.png"},
+{x=650, y=150, targetX=260, targetY=85, img="images/hedgehog_p2.png"},
+{x=650, y=150, targetX=400, targetY=106, img="images/hedgehog_p3.png"},
+{x=650, y=150, targetX=540, targetY=106, img="images/hedgehog_p4.png"},
+{x=650, y=150, targetX=100, targetY=252, img="images/hedgehog_p5.png"},
+{x=650, y=150, targetX=260, targetY=231, img="images/hedgehog_p6.png"},
+{x=650, y=150, targetX=400, targetY=273, img="images/hedgehog_p7.png"},
+{x=650, y=150, targetX=540, targetY=273, img="images/hedgehog_p8.png"},
+{x=650, y=150, targetX=80, targetY=421, img="images/hedgehog_p9.png"},
+{x=650, y=150, targetX=220, targetY=399, img="images/hedgehog_p10.png"},
+{x=650, y=150, targetX=380, targetY=421, img="images/hedgehog_p11.png"},
+{x=650, y=150, targetX=540, targetY=421, img="images/hedgehog_p12.png"},
+{x=650, y=150, targetX=100, targetY=567, img="images/hedgehog_p13.png"},
+{x=650, y=150, targetX=240, targetY=567, img="images/hedgehog_p14.png"},
+{x=650, y=150, targetX=400, targetY=567, img="images/hedgehog_p15.png"},
+{x=650, y=150, targetX=560, targetY=567, img="images/hedgehog_p16.png"},
+}
+};
+
+total_images = total_images + 1;
+
+img_table[total_images] = 
+{name="images/penguin_canvas.png",
+arguments={
+{x=650, y=150, targetX=100, targetY=80, img="images/penguin_p1.png"},
+{x=650, y=150, targetX=260, targetY=80, img="images/penguin_p2.png"},
+{x=650, y=150, targetX=400, targetY=100, img="images/penguin_p3.png"},
+{x=650, y=150, targetX=540, targetY=100, img="images/penguin_p4.png"},
+{x=650, y=150, targetX=100, targetY=240, img="images/penguin_p5.png"},
+{x=650, y=150, targetX=260, targetY=220, img="images/penguin_p6.png"},
+{x=650, y=150, targetX=400, targetY=260, img="images/penguin_p7.png"},
+{x=650, y=150, targetX=540, targetY=260, img="images/penguin_p8.png"},
+{x=650, y=150, targetX=80, targetY=400, img="images/penguin_p9.png"},
+{x=650, y=150, targetX=220, targetY=380, img="images/penguin_p10.png"},
+{x=650, y=150, targetX=380, targetY=400, img="images/penguin_p11.png"},
+{x=650, y=150, targetX=540, targetY=400, img="images/penguin_p12.png"},
+{x=650, y=150, targetX=100, targetY=540, img="images/penguin_p13.png"},
+{x=650, y=150, targetX=240, targetY=540, img="images/penguin_p14.png"},
+{x=650, y=150, targetX=400, targetY=540, img="images/penguin_p15.png"},
+{x=650, y=150, targetX=560, targetY=540, img="images/penguin_p16.png"},
 }
 };
 
@@ -467,8 +802,8 @@ local function onTouch( event )
 			-- relative to initial grab point, rather than object "snapping").
 				t.x = event.x - t.x0
 				t.y = event.y - t.y0
-				print (t.x) 
-				print (t.y) 
+				--print (t.x) 
+				--print (t.y) 
 			if (t.x <0) and (t.y > display.contentHeight) then
 				t.x=0
 				t.y=display.contentHeight
@@ -530,23 +865,58 @@ end
 
 
 
-local function onHomeTouch(event)
+local function onLeftTouch(event)
 
-    myGroup:removeSelf()   
-	doneMsg:removeSelf()
+    
 	img_index=0;
-	print("img_index = ",img_index)
-	print("total_images = ", total_images)
 	
 
-	composer.gotoScene("menu")
+	--composer.gotoScene("menu")
+    myGroup:removeSelf()   
+    doneMsg:removeSelf()
+    local myImages = {
+    "images/pig_resize.png",
+    "images/dolphin_resize.png",
+    "images/kids_resize.png",
+    "images/icecream_resize.png",
+    "images/squirrels_resize.png",
+    "images/camping_resize.png",
+    "images/kidsplaying_resize.png",
+    "images/rainbow_resize.png",
+    "images/kidsrunning_resize.png",
+    "images/threeboys_resize.png",
+    "images/manrunning_resize.png",
+     "images/kidsandschool_resize.png",
+     "images/kidsstudy_resize.png",
+    "images/tree_resize.png",
+    "images/zebra_resize.png",
+    "images/spider_resize.png",
+    "images/owl_resize.png",
+    "images/happylion_resize.png",
+     "images/frog_resize.png",
+     "images/elephant_resize.png",
+     "images/duck_resize.png",
+     "images/dino_resize.png",
+     "images/crab_resize.png",
+     "images/chicken_resize.png",
+     "images/bear_resize.png",
+     "images/lion_resize.png",
+     "images/horse_resize.png",
+     "images/hedgehog_resize.png",
+     "images/penguin_resize.png"
+    
+}   
+    
 
+local s=slideView.new( myImages,"bg.jpg",0,0, 2)
+s:jumpToImage(num)
+leftTouched=true
 end
 
 
 
 
-local function onPreviewTouch(event)
+--[[local function onPreviewTouch(event)
 	local preview
 
 
@@ -568,7 +938,7 @@ local function onPreviewTouch(event)
 
 preview.x=350
 preview.y=150
-end
+end--]]
 
 	
 	
@@ -645,15 +1015,15 @@ end
 
  
 
-    local homeButton=display.newImageRect(myGroup,"images/home.png",100,100)
-    homeButton.x= 100
-    homeButton.y=100
-    homeButton:addEventListener( "touch" , onHomeTouch )
+    local leftButton=display.newImageRect(myGroup,"images/left.png",100,100)
+    leftButton.x= 100
+    leftButton.y=200
+    leftButton:addEventListener( "touch" , onLeftTouch )
 
-    local previewButton=display.newImageRect(myGroup,"images/preview.png",100,100)
+    --[[local previewButton=display.newImageRect(myGroup,"images/preview.png",100,100)
     previewButton.x=350
     previewButton.y=100
-    previewButton:addEventListener( "touch", onPreviewTouch)
+    previewButton:addEventListener( "touch", onPreviewTouch)--]]
 
 
 	isPuzzleDone = false
@@ -698,7 +1068,7 @@ local function printTouch2( event )
 		end--]]
 
 
-		if (isPuzzleDone) then
+		if (isPuzzleDone) and (leftTouched==false) then
 			myGroup:removeSelf( )
 			myGroup = display.newGroup( );
 			doneMsg.text = ""
@@ -719,6 +1089,10 @@ end
 
 -- Called when the scene's view does not exist:
 function scene:create( event )
+    local params=event.params
+    print("in jigsaw params is ",params.sample_var)
+    num=params.sample_var
+    img_index=num-1
 	local screenGroup = self.view
 
 	Runtime:addEventListener( "touch", printTouch2 )
@@ -739,12 +1113,17 @@ function scene:show( event )
 
 	--storyboard.removeScene( "menu" )
 	if (ctrVar ~= 2) then
+        local params=event.params
+        print("in jigsaw params scene show ",params.sample_var)
+        num=params.sample_var
+        img_index=num-1
 		print( "2: enterScene event" )
 		myGroup = display.newGroup( );
-		doneMsg = display.newText("", display.contentCenterX, 1000, native.systemFontBold, 64 )
-		print ("img_index in enter scene = " , img_index)
-		print("total_images in eneter scene = " , total_images)
-		img_index = (img_index + 1) % total_images;
+		doneMsg = display.newText("", display.contentCenterX, 1100, native.systemFontBold, 64 )
+		--print ("img_index in enter scene = " , img_index)
+		--print("total_images in eneter scene = " , total_images)
+		--img_index = (img_index + 1) % total_images;
+       -- print("img_index in enter scene after that formula is " , img_index)
 		create_puzzle();
 		ctrVar=1
 	end
@@ -770,6 +1149,7 @@ end
 function scene:destroy( event )
 	local screenGroup = self.view
 	print( "((destroying scene 2's view))" )
+    
 
 end
 ---------------------------------------------------------------------------------
